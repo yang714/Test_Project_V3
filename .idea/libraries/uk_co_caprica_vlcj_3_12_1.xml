@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="uk.co.caprica:vlcj:3.12.1" type="repository">
+    <properties maven-id="uk.co.caprica:vlcj:3.12.1" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/vlcj-3.12.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/jna-5.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/jna-platform-5.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/slf4j-api-1.7.25.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

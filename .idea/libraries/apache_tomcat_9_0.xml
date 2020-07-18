@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="apache-tomcat-9.0">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../apache-tomcat-9.0.34" />
+      <root url="jar://$USER_HOME$/Downloads/json-lib-2.4-jdk15.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../apache-tomcat-9.0.34/webapps/docs/appdev/sample/src" />
+      <root url="file://$PROJECT_DIR$/../apache-tomcat-9.0.34/webapps/examples/WEB-INF/classes" />
+      <root url="file://$PROJECT_DIR$/../apache-tomcat-9.0.34/webapps/examples/WEB-INF/jsp/applet" />
+      <root url="file://$PROJECT_DIR$/../apache-tomcat-9.0.34/webapps/examples/jsp/plugin/applet" />
+      <root url="file://$USER_HOME$/Documents/sqljdbc_8.2/cht/samples/adaptive" />
+      <root url="file://$USER_HOME$/Documents/sqljdbc_8.2/cht/samples/alwaysencrypted" />
+      <root url="file://$USER_HOME$/Documents/sqljdbc_8.2/cht/samples/azureactivedirectoryauthentication" />
+      <root url="file://$USER_HOME$/Documents/sqljdbc_8.2/cht/samples/connections" />
+      <root url="file://$USER_HOME$/Documents/sqljdbc_8.2/cht/samples/constrained" />
+      <root url="file://$USER_HOME$/Documents/sqljdbc_8.2/cht/samples/dataclassification" />
+      <root url="file://$USER_HOME$/Documents/sqljdbc_8.2/cht/samples/datatypes" />
+      <root url="file://$USER_HOME$/Documents/sqljdbc_8.2/cht/samples/resultsets" />
+      <root url="file://$USER_HOME$/Documents/sqljdbc_8.2/cht/samples/sparse" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="user_Model" />
+    <bean id="DataS" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="url" value="jdbc:sqlserver://localhost:1433;databaseName=Test_DataBase"/>
+        <property name="username" value="sa"></property>
+        <property name="password" value="DIO"></property>
+    </bean>
+
+<bean id="Order_A" class="Order_Table_Model.Order_Table_Action"></bean>
+
+<bean id="Test" class="user_Model.user_Action" name="Test"/>
+<bean id="user_M" class="user_Model.user_M"></bean>
+
+<bean id="Memu_A" class="Memu_model.Memu_Action"></bean>
+    <bean id="Memu_M" class="Memu_model.Memu_M"></bean>
+
+    <bean id="Test_show" class="Test_show_total.Show_TL"></bean>
+
+  <bean id="Table_A" class="Table_Model.Table_Action"></bean>
+<bean id="Table_model" class="Table_Model.Table_model"></bean>
+
+    <bean id="Check_A" class="Check_out_model.Check_out_Action"></bean>
+    <bean id="Check_model" class="Check_out_model.Checkout_model"></bean>
+
+    <bean id="Discount_A" class="Discount.Discount_A"></bean>
+    <bean id="Discount_model" class="Discount.Discount_M"></bean>
+
+    <bean id="Report_A" class="Report.Report_A"></bean>
+    <bean id="Report_model" class="Report.Report_Model"></bean>
+
+    <bean id="ReportN_A" class="Report_number.Report_NA"></bean>
+    <bean id="ReportN_model" class="Report_number.ReportN_model"></bean>
+
+    <bean id="VLC_EX" class=" IPcamera.VLC_EX"></bean>
+<!--    <bean id="ReportN_model" class="Report_number.ReportN_model"></bean>-->
+</beans>

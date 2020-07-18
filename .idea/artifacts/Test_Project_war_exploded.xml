@@ -1,0 +1,29 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Test_Project:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Test_Project_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Test_Project/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Test_Project" />
+          <element id="library" level="project" name="apache-tomcat-9.0" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Spring-5.2.3.RELEASE" />
+          <element id="library" level="project" name="servlet-api" />
+          <element id="library" level="project" name="jstl-1.2" />
+          <element id="library" level="project" name="lib" />
+          <element id="library" level="project" name="javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="json-lib-2.4-jdk15" />
+          <element id="library" level="project" name="sqljdbc42" />
+          <element id="library" level="project" name="mssql-jdbc-8.2.2.jre13" />
+          <element id="library" level="project" name="json-simple-1.1" />
+          <element id="library" level="project" name="vlcj-4.4" />
+          <element id="library" level="project" name="uk.co.caprica:vlcj:3.12.1" />
+          <element id="library" level="project" name="javacv-platform-1.5.3" />
+          <element id="library" level="project" name="javacv-platform-1.5" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
