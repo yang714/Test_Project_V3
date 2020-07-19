@@ -37,6 +37,6 @@
     <bean id="ReportN_A" class="Report_number.Report_NA"></bean>
     <bean id="ReportN_model" class="Report_number.ReportN_model"></bean>
 
-    <bean id="VLC_EX" class=" IPcamera.VLC_EX"></bean>
+    <bean id="VLC_EX" class="IPcamera.VLC_EX"></bean>
 <!--    <bean id="ReportN_model" class="Report_number.ReportN_model"></bean>-->
 </beans>
