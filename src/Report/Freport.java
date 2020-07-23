@@ -1,12 +1,10 @@
 package Report;
 
-import Interface.Action;
-import Test_show_total.Show_T;
+import Test_HIB.CheckOutEntity;
+//import  Test_check.CheckOutEntity;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import user_Model.user_M;
 
-import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -73,7 +71,9 @@ public class Freport extends HttpServlet {
 //                        System.out.println("i-->  "+ i);
 //                    }
 //                        Report_Model[] RMM = RAC.ReportV2(d1, d2);
+
                         ArrayList<Report_Model> RMM=RAC.ReportV2(d1, d2);
+
                         request.getSession().setAttribute("Rep_eachday", RMM);
 
                     }

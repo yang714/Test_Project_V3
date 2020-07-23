@@ -1,18 +1,20 @@
 package Interface;
 
 
+import Test_HIB.User1Entity;
 import user_Model.user_M;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public interface Action {
-    int[] check(user_M um) throws SQLException;
-    void insert(user_M um) throws SQLException;
-    boolean check_ID(user_M um);
+    int[] check(User1Entity um) throws SQLException;
+    void  insert(User1Entity um) throws SQLException;
+    boolean check_ID(User1Entity um);
     void chang_pw(user_M um);
-    user_M[] Show_user(user_M um) throws SQLException;
+    ArrayList<User1Entity> Show_user(User1Entity um) throws SQLException;
 //    int Show_total(String table)throws SQLException;
-    void Delete(user_M um)throws SQLException;
+    void Delete(User1Entity um)throws SQLException;
 
 //
 //    void setId(String test_insert);

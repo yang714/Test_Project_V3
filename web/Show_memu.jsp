@@ -40,19 +40,19 @@
         </tr>
         <c:forEach var="i" items="${show_memu_model}">
             <tr>
-                <input value="${i.memu_ID}" type="hidden" name="memu_ID"/>
-                <td style="vertical-align: middle"><input name="memu_name" value=${i.memu_name}></td>
-                <td style="vertical-align: middle"><input name="memu_price" value=${i.memu_price}></td>
+                <input value="${i.memuId}" type="hidden" name="memu_ID"/>
+                <td style="vertical-align: middle"><input name="memu_name" value=${i.name}></td>
+                <td style="vertical-align: middle"><input name="memu_price" value=${i.price}></td>
 <%--                <td>${i.food_type}</td>--%>
    <td >
        <select name="Test_select" class="selectpicker">
             <c:forEach var="j" items="${Food_kind}">
                 <c:choose>
-    <c:when test="${i.meal_ID==j.meal_ID}">
-        <option value=${j.meal_ID} SELECTED >${j.food_type} </option>
+    <c:when test="${i.mealId==j.mealId}">
+        <option value=${j.mealId} SELECTED >${j.type} </option>
     </c:when>
                     <c:otherwise>
-            <option value=${j.meal_ID}>${j.food_type} </option>
+            <option value=${j.mealId}>${j.type} </option>
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
@@ -60,7 +60,7 @@
 
    </td>
 
-    <td> <button type="submit" value="${i.memu_ID}" name="memu_delete" class="btn btn-danger btn-lg">
+    <td> <button type="submit" value="${i.memuId}" name="memu_delete" class="btn btn-danger btn-lg">
         <span class="glyphicon glyphicon-remove"></span></button></td>
                     <%--        <td><input value="${i.id}" name="test" type="submit"></td>--%>
 
@@ -76,7 +76,7 @@
             <td >
                 <select name="selectADD" class="selectpicker">
 <c:forEach var="j" items="${Food_kind}">
-    <option value=${j.meal_ID}>${j.food_type} </option>
+    <option value=${j.mealId}>${j.type} </option>
 </c:forEach>
             </select>
             </td>

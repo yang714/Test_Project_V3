@@ -65,7 +65,7 @@
     <select name="select_Discount" id="mySelect" onchange="this.form.submit()">
         <option>---</option>
         <c:forEach var="j" items="${sessionScope.show_dis}">
-<option value="${j.dispercent}">${j.disname} / ${j.dispercent}</option>
+<option value="${j.discountPercent}">${j.discountName} / ${j.discountPercent}</option>
         </c:forEach>
 <%--        <option >choose</option>--%>
 <%--        <option value=0.2>20</option>--%>

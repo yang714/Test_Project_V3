@@ -63,11 +63,11 @@
       <c:forEach var="i" items="${food_type}"  varStatus="idxStatus">
     <div class="form-check ">
 <%--        <label style="font-size: 2em" >--%>
-          <input name="Check_out_box" type="checkbox" id="f+${i.meal_ID}+"  value=${i.meal_ID} >
+          <input name="Check_out_box" type="checkbox" id="f+${i.mealId}+"  value=${i.mealId} >
 <%--    <label style="font-size: 2em" >--%>
 <%--            <span class="cr"><i class="cr-icon fa fa-check" style="font-size: 25px"> ${i.food_type} </i></span>--%>
 
-            <label for='f${i.meal_ID}' style="font-size: 25px">${i.food_type} </label>
+            <label for='f${i.mealId}' style="font-size: 25px">${i.type} /${i.mealId}</label>
 <%--                        <span class="label-text">${i.food_type}</span>--%>
 <%--        </label>--%>
     </div>
@@ -83,8 +83,8 @@
     <div class="form-check">
     <c:forEach var="j" items="${show_memu}"  varStatus="idxStatus">
         <div class="form-check">
-        <input name="Check_out_box" type="checkbox" id="m+${j.memu_ID}+"  value=${j.memu_ID} >
-        <label for='m${j.memu_ID}' style="font-size: 25px">${j.memu_name} </label>
+        <input name="Check_out_box" type="checkbox" id="m+${j.memuID}+"  value=${j.memuID} >
+        <label for='m${j.memuID}' style="font-size: 25px">${j.name} </label>
 <%--            <span class="cr"><i class="cr-icon fa fa-check" style="font-size: 25px">${j.memu_name} </i></span>--%>
         </div>
     </c:forEach>

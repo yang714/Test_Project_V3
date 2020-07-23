@@ -146,7 +146,7 @@ public class Report_NA implements ReportN_In{
                     while(rs.next()){
                         ReportN_model arnm=new ReportN_model();
                         arnm.setCount(rs.getInt(1));
-                        arnm.setName(rs.getString(3));
+                        arnm.setName(rs.getString(2));
                         ARNM.add(arnm);
                     }
                 }
@@ -266,7 +266,6 @@ public class Report_NA implements ReportN_In{
                             "SELECT sum(Check_out.check_number) ,Memu.memu_ID,Memu.Name\n" +
                                     "  FROM Check_out \n" +
                                     "  join Memu on Check_out.memu_ID=Memu.memu_ID\n" +
-
                                     "  where YEAR(Check_Date)=?  and MONTH(Check_Date)=? and Memu.memu_ID=?\n" +
                                     "    group by Memu.memu_ID ,Memu.Name");
 

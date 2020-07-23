@@ -1,7 +1,13 @@
 package Check_out_model;
 
 import Check_out_interface.Check_out_intf;
+import HibernateUtilpack.HibernateUtil;
+import Test_HIB.TableKindEntity;
 import Test_show_total.Show_T;
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -10,6 +16,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class Check_out_Action implements Check_out_intf {
     @Resource(name = "DataS")
@@ -29,37 +37,71 @@ public class Check_out_Action implements Check_out_intf {
 //
 //        int count=ss.Show_total(query);
 //        System.out.println("count" + count);
-        Connection cnn = ds.getConnection();
-        PreparedStatement ps = cnn.prepareStatement(
-                "SELECT Order_ID,who_order ,orderTableID    ,OrderTable.memu_ID   ,order_number ,Name,Table_Name+ CONVERT(varchar(10), Table_number) as name_number\n" +
-                        "FROM OrderTable\n" +
-                        "join Memu \n" +
-                        "on OrderTable.memu_ID=Memu.memu_ID\n" +
-                        "and food_status=0 \n" +
-                        "and orderTableID=?\n" +
-                        "and order_number!=0 \n" +
-                        "join Table_Kind\n" +
-                        "on Table_ID=orderTableID");
-        ps.setInt(1, Table_ID);
-        ResultSet RS = ps.executeQuery();
-//        Checkout_model[] Cm=new Checkout_model[count];
-        //
+        //******************************************************//
+        Session session= HibernateUtil.getSessionFactory().openSession();
+//        String SQL="from OrderTableEntity OTE join MemuEntity ME on OTE.memuId=ME.memuId and OTE.foodStatus=0 and OTE.orderTableId=?1 AND OTE.orderNumber!=0";
+//        session.createQuery(SQL);
+        String SQL="SELECT Order_ID,who_order,orderTableID,OrderTable.memu_ID,order_number ,Name,Table_Name+ CONVERT(varchar(10), Table_number) as name_number\n" +
+                "FROM OrderTable\n" +
+                "join Memu \n" +
+                "on OrderTable.memu_ID=Memu.memu_ID\n" +
+                "and food_status=0 \n" +
+                "and orderTableID=?1\n" +
+                "and order_number!=0 \n" +
+                "join Table_Kind\n" +
+                "on Table_ID=orderTableID";
+
+       SQLQuery sqlQuery= session.createSQLQuery(SQL);
+       sqlQuery.setParameter(1,Table_ID);
         ArrayList<Checkout_model> ACM = new ArrayList();
-        //
-        int c = 0;
-        while (RS.next()) {
-            Checkout_model ccm = new Checkout_model();
-            ccm.setOrder_ID(RS.getInt(1));
-            ccm.setWho_order(RS.getInt(2));
-            ccm.setOrderTableID(RS.getInt(3));
-            ccm.setMemu_ID(RS.getInt(4));
-            ccm.setOrder_number(RS.getInt(5));
-            ccm.setMemuname(RS.getString(6));
-            ccm.setTableidname(RS.getString(7));
-//            Cm[c]=ccm;
-//            c=c+1;
-            ACM.add(ccm);
-        }
+       List<Object[]>test= sqlQuery.list();
+       for(Object[] i:test){
+//           System.out.println(i[1].toString()+"~~~ "+i[2].toString()+"  "+i[3].toString()+"  "+
+//                   i[4].toString()+"  "+i[5].toString()+"  "+i[6].toString());
+           Checkout_model ccm = new Checkout_model();
+           ccm.setOrder_ID((Integer.valueOf(i[0].toString())));
+           ccm.setWho_order(Integer.valueOf(i[1].toString()));
+           ccm.setOrderTableID(Integer.valueOf(i[2].toString()));
+           ccm.setMemu_ID(Integer.valueOf(i[3].toString()));
+
+           ccm.setOrder_number(Integer.valueOf(i[4].toString()));
+
+           ccm.setMemuname((i[5].toString()));
+           ccm.setTableidname(i[6].toString());
+           ACM.add(ccm);
+       }
+        //*********************************************************//
+//        Connection cnn = ds.getConnection();
+//        PreparedStatement ps = cnn.prepareStatement(
+//                "SELECT Order_ID,who_order ,orderTableID    ,OrderTable.memu_ID   ,order_number ,Name,Table_Name+ CONVERT(varchar(10), Table_number) as name_number\n" +
+//                        "FROM OrderTable\n" +
+//                        "join Memu \n" +
+//                        "on OrderTable.memu_ID=Memu.memu_ID\n" +
+//                        "and food_status=0 \n" +
+//                        "and orderTableID=?\n" +
+//                        "and order_number!=0 \n" +
+//                        "join Table_Kind\n" +
+//                        "on Table_ID=orderTableID");
+//        ps.setInt(1, Table_ID);
+//        ResultSet RS = ps.executeQuery();
+////        Checkout_model[] Cm=new Checkout_model[count];
+//        //
+//        ArrayList<Checkout_model> ACM = new ArrayList();
+//        //
+//        int c = 0;
+//        while (RS.next()) {
+//            Checkout_model ccm = new Checkout_model();
+//            ccm.setOrder_ID(RS.getInt(1));
+//            ccm.setWho_order(RS.getInt(2));
+//            ccm.setOrderTableID(RS.getInt(3));
+//            ccm.setMemu_ID(RS.getInt(4));
+//            ccm.setOrder_number(RS.getInt(5));
+//            ccm.setMemuname(RS.getString(6));
+//            ccm.setTableidname(RS.getString(7));
+////            Cm[c]=ccm;
+////            c=c+1;
+//            ACM.add(ccm);
+//        }
 
 
         return ACM;
@@ -67,17 +109,27 @@ public class Check_out_Action implements Check_out_intf {
 
     @Override
     public String Tableidname(int id) throws SQLException {
-        Connection cnn = ds.getConnection();
-        PreparedStatement ps = cnn.prepareStatement("SELECT Table_Name+ CONVERT(varchar(10), Table_number) as name_number" +
-                "  FROM Table_Kind" +
-                "  where Table_ID=?");
-        ps.setInt(1, id);
-        ResultSet RS = ps.executeQuery();
+        //********************************************//
+        Session session=HibernateUtil.getSessionFactory().openSession();
+        Query query=session.createQuery("FROM TableKindEntity");
+        Iterator test=query.list().iterator();
         String a = null;
-        while (RS.next()) {
-            a = RS.getString(1);
+        while (test.hasNext()){
+            TableKindEntity TKE=(TableKindEntity)test.next();
+            a=TKE.getTableName()+TKE.getTableid_name();
         }
-
+        //*********************************************//
+//        Connection cnn = ds.getConnection();
+//        PreparedStatement ps = cnn.prepareStatement("SELECT Table_Name+ CONVERT(varchar(10), Table_number) as name_number" +
+//                "  FROM Table_Kind" +
+//                "  where Table_ID=?");
+//        ps.setInt(1, id);
+//        ResultSet RS = ps.executeQuery();
+//        String a = null;
+//        while (RS.next()) {
+//            a = RS.getString(1);
+//        }
+session.close();
         return a;
     }
 
@@ -106,6 +158,7 @@ public class Check_out_Action implements Check_out_intf {
             }
         }
         return save_ordernymber;
+
     }
 
     /////////////
@@ -135,39 +188,63 @@ public class Check_out_Action implements Check_out_intf {
 //        }
 //        System.out.println("<------------------>");
 //        System.out.println(save.get(0)+"----"+save.get(1));
-
-        PreparedStatement ps = cnn.prepareStatement("UPDATE OrderTable SET order_number=?, food_status=? WHERE Order_ID=?;");
+//*******************************************************************//
+        Session session=HibernateUtil.getSessionFactory().openSession();
+        Query query=session.createQuery("UPDATE OrderTableEntity OTE SET OTE.orderNumber=?1 ,OTE.foodStatus=?2 WHERE OTE.orderId=?3");
+        ArrayList<Integer> deletee = new ArrayList();
         int c = 0;
         int resorder = 0;
-//        ArrayList<String> save_id=new ArrayList();
-        ArrayList<Integer> delete = new ArrayList();
         for (String aa : IDOnumber) {
-
+            Transaction tx= session.beginTransaction();
             String[] tokens = aa.split(",");
-            System.out.println(tokens[0] + "  <>  " + tokens[1]);//ID ,order number
             resorder = Integer.valueOf(tokens[1]) - Integer.valueOf(save_ordernymber.get(c));
             if (resorder == 0) {
-                ps.setInt(2, 1);
-                delete.add(Integer.valueOf(tokens[0]));
+                query.setParameter(2,1);
+                deletee.add(Integer.valueOf(tokens[0]));
             } else {
-                ps.setInt(2, 0);
+                query.setParameter(2,0);
             }
-            ps.setInt(1, resorder);
-            ps.setInt(3, Integer.valueOf(tokens[0]));
-            ps.addBatch();
-            c = c + 1;
-//            save_id.add(tokens[0]);
+            query.setParameter(1,resorder) ;
+            query.setParameter(3,Integer.valueOf(tokens[0]));
+            c=c+1;
 
+            query.executeUpdate();
+            tx.commit();
         }
+        CA.Delete_zero(deletee);
+        session.close();
+        //************************************************************//
+//        PreparedStatement ps = cnn.prepareStatement("UPDATE OrderTable SET order_number=?, food_status=? WHERE Order_ID=?;");
+//        int c = 0;
+//        int resorder = 0;
+////        ArrayList<String> save_id=new ArrayList();
+//        ArrayList<Integer> delete = new ArrayList();
+//        for (String aa : IDOnumber) {
+//
+//            String[] tokens = aa.split(",");
+//            System.out.println(tokens[0] + "  <>  " + tokens[1]);//ID ,order number
+//            resorder = Integer.valueOf(tokens[1]) - Integer.valueOf(save_ordernymber.get(c));
+//            if (resorder == 0) {
+//                ps.setInt(2, 1);
+//                delete.add(Integer.valueOf(tokens[0]));
+//            } else {
+//                ps.setInt(2, 0);
+//            }
+//            ps.setInt(1, resorder);
+//            ps.setInt(3, Integer.valueOf(tokens[0]));
+//            ps.addBatch();
+//            c = c + 1;
+////            save_id.add(tokens[0]);
+//
+//        }
+//        ps.executeBatch();
+//        for(Integer I:delete){
+//            System.out.println("need to delete I is "+I);
+//
+//        }
+//        CA.Delete_zero(delete);
 
-        ps.executeBatch();
-        for(Integer I:delete){
-            System.out.println("need to delete I is "+I);
-
-        }
-        CA.Delete_zero(delete);
-
-        //////
+        ////
 
 //        Checkout_model[] CHM= CA.FOODNAME_CHECK(save_id,save_ordernymber);
 //        return CHM;
@@ -262,6 +339,9 @@ public class Check_out_Action implements Check_out_intf {
 
     @Override
     public void Update2table(Checkout_model[] AFCM, int who_check) throws SQLException {
+        //***************************************//
+        
+        //**************************************//
         Connection cnn = ds.getConnection();
         PreparedStatement ps = cnn.prepareStatement(
                 "INSERT INTO Check_out  (Order_ID,who_order ,who_check," +

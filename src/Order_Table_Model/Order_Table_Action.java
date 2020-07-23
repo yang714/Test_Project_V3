@@ -1,33 +1,43 @@
 package Order_Table_Model;
 
+import HibernateUtilpack.HibernateUtil;
 import Memu_model.Memu_M;
 import Order_Table.Order_Table_Interface;
+import Test_HIB.MemuEntity;
+import org.hibernate.SQLQuery;
+import org.hibernate.Session;
 
 import javax.annotation.Resource;
+import javax.management.Query;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Order_Table_Action implements Order_Table_Interface {
     @Resource(name = "DataS")
     DataSource ds;
-    @Resource(name="Memu_M")
-    public Memu_M mm;
+    @Resource(name="HIBMemu_M")
+    public MemuEntity mm;
     @Override
-    public Memu_M[] Save_Order(String[] sid, String[] sanme, String[] snumber) throws SQLException {
-        Memu_M[] MM=new Memu_M[sid.length];
+    public ArrayList<MemuEntity> Save_Order(String[] sid, String[] sanme, String[] snumber) throws SQLException {
+//        Memu_M[] MM=new Memu_M[sid.length];
+        ArrayList<MemuEntity> HARRME=new ArrayList();
         for(int i=0;i<sid.length;i++){
-            mm=new Memu_M();
-            mm.setMemu_ID(Integer.valueOf(sid[i]));
-            mm.setMemu_name(sanme[i]);
+            mm=new MemuEntity();
+//            mm.setMemu_ID(Integer.valueOf(sid[i]));
+//            mm.setMemu_name(sanme[i]);
+//            mm.setOrder_meal_number(Integer.valueOf(snumber[i]));
+//            MM[i]=mm;
+            mm.setMemuId(Integer.valueOf(sid[i]));
+            mm.setName(sanme[i]);
             mm.setOrder_meal_number(Integer.valueOf(snumber[i]));
-
-            MM[i]=mm;
+            HARRME.add(mm);
         }
 
-        return MM;
+        return HARRME;
     }
 
     @Override
@@ -49,25 +59,47 @@ public class Order_Table_Action implements Order_Table_Interface {
     }
 
     @Override
-    public void SaveOrder2DataB(Object user_id,int t_id, Memu_M[] MO) throws SQLException {
+    public void SaveOrder2DataB(Object user_id,int t_id, ArrayList<MemuEntity> MO) throws SQLException {
+        //Hibernet*JDBC Batch***********************************//
+        Session session= HibernateUtil.getSessionFactory().openSession();
         Connection cnn=ds.getConnection();
-        PreparedStatement ps=cnn.prepareStatement("INSERT INTO OrderTable (who_order,orderTableID," +
+        String sql=("INSERT INTO OrderTable (who_order,orderTableID," +
                 "memu_ID,order_number,food_status)\n" +
                 "VALUES (?,?,?,?,?) ");
-
-        System.out.println( user_id);
-        for(int i=0;i<MO.length;i++){
+        PreparedStatement ps=cnn.prepareStatement(sql);
+        for(int i=0;i<MO.size();i++){
 
 //            System.out.println(" Integer.parseInt(id[i])  "+ Integer.parseInt(id[i]));
             ps.setInt(1, (Integer) user_id);
             ps.setString(2, String.valueOf(t_id));
-            ps.setInt(3,(MO[i].getMemu_ID()));
-            ps.setInt(4, (MO[i].getOrder_meal_number()));
+            ps.setInt(3, MO.get(i).getMemuId());
+            ps.setInt(4, MO.get(i).getOrder_meal_number());
             ps.setInt(5, 0);
             ps.addBatch();
         }
+
         ps.executeBatch();
-//        return new Memu_M[0];
+        cnn.close();
+        //*************************************//
+
+//        Connection cnn=ds.getConnection();
+//        PreparedStatement ps=cnn.prepareStatement("INSERT INTO OrderTable (who_order,orderTableID," +
+//                "memu_ID,order_number,food_status)\n" +
+//                "VALUES (?,?,?,?,?) ");
+//
+//        System.out.println( user_id);
+//        for(MemuEntity i:MO){
+//
+////            System.out.println(" Integer.parseInt(id[i])  "+ Integer.parseInt(id[i]));
+//            ps.setInt(1, (Integer) user_id);
+//            ps.setString(2, String.valueOf(t_id));
+//            ps.setInt(3,(MO[i].getMemu_ID()));
+//            ps.setInt(4, (MO[i].getOrder_meal_number()));
+//            ps.setInt(5, 0);
+//            ps.addBatch();
+//        }
+//        ps.executeBatch();
+////        return new Memu_M[0];
     }
 
 }

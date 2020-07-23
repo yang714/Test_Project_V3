@@ -1,12 +1,11 @@
 package User_page;
 
 import Interface.Action;
-import Test_show_total.Show_T;
+import Test_HIB.User1Entity;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import user_Model.user_M;
 
-import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,19 +26,25 @@ public class Delete extends HttpServlet {
         String xml= "Project.xml";
         ApplicationContext ap=new ClassPathXmlApplicationContext(xml);
         Action AC=(Action) ap.getBean("Test");//<bean id="Test" class="user_Model.user_Action"></bean>
-        user_M um=(user_M) ap.getBean("user_M");//<bean id="user_M" class="user_Model.user_M"></bean>
-        um.setId_number(del_id_number);
+        User1Entity um=(User1Entity) ap.getBean("HIBuser_M");//<bean id="user_M" class="user_Model.user_M"></bean>
+        um.setId(del_id_number);
         try {
-
-
-                AC.Delete(um);
-
-//            AC.Delete(um);
-            System.out.println("finish");
+            AC.Delete(um);
+           System.out.println("finish");
             RequestDispatcher rd=request.getRequestDispatcher("/Show_U");
             rd.forward(request,response);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+//        try {
+//            AC.Delete(um);
+//
+////            AC.Delete(um);
+//            System.out.println("finish");
+//            RequestDispatcher rd=request.getRequestDispatcher("/Show_U");
+//            rd.forward(request,response);
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
     }
 }

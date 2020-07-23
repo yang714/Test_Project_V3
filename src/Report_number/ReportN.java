@@ -2,6 +2,8 @@ package Report_number;
 
 import Memu_interface.Memu_ACT;
 import Memu_model.Memu_M;
+import Test_HIB.MealTypeEntity;
+import Test_HIB.MemuEntity;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -22,33 +24,26 @@ public class ReportN extends HttpServlet {
         String xml= "Project.xml";
         ApplicationContext ap=new ClassPathXmlApplicationContext(xml);
         Memu_ACT AC=(Memu_ACT) ap.getBean("Memu_A");//<bean id="Test" class="user_Model.user_Action"></bean>
-        Memu_M mm=(Memu_M) ap.getBean("Memu_M");//<bean id="user_M" class="user_Model.user_
+        MemuEntity mm=(MemuEntity) ap.getBean("HIBMemu_M");//<bean id="user_M" class="user_Model.user_
         Report_NA RAC=(Report_NA) ap.getBean("ReportN_A");
+        MealTypeEntity mL=(MealTypeEntity)  ap.getBean("HIBMealType_M");
         System.out.println("request.getParameter(\"Meal\")"+request.getParameter("Meal"));
         System.out.println("request.getParameter(\"Memu\")"+request.getParameter("Memu"));
         if(request.getParameter("Meal")!=null){
              request.getSession().setAttribute("CHtype",request.getParameter("Meal"));
 //            request.setAttribute("CHtype",request.getParameter("Meal"));
 
-            try {
-                Memu_M[] Food_kind=AC.Food_kind(mm);
-                request.setAttribute("food_type",Food_kind);
-                request.getSession().setAttribute("food_type",Food_kind);//
+            ArrayList<MealTypeEntity>  Food_kind=AC.Food_kind(mL);
+            request.setAttribute("food_type",Food_kind);
+            request.getSession().setAttribute("food_type",Food_kind);//
 
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
         }
         else if(request.getParameter("Memu")!=null){
             request.getSession().setAttribute("CHtype",request.getParameter("Memu"));
 //            request.setAttribute("CHtype",request.getParameter("Memu"));
-            try {
-                ArrayList<Memu_M> Show_memu= AC.Show_memu(mm);
-                request.setAttribute("show_memu",Show_memu);
-                request.getSession().setAttribute("show_memu",Show_memu);//
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+            ArrayList<MemuEntity> Show_memu= AC.Show_memu(mm);
+            request.setAttribute("show_memu",Show_memu);
+            request.getSession().setAttribute("show_memu",Show_memu);//
         }
         try {
             ArrayList<Integer>AY= RAC.Report_GETY();

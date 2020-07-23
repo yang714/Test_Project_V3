@@ -1,6 +1,7 @@
 package login_page;
 
 import Interface.Action;
+import Test_HIB.User1Entity;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import user_Model.user_M;
@@ -31,10 +32,10 @@ public class JDBC_insert extends HttpServlet {
             String xml= "Project.xml";
             ApplicationContext ap=new ClassPathXmlApplicationContext(xml);
             Action AC=(Action) ap.getBean("Test");//<bean id="Test" class="user_Model.user_Action"></bean>
-            user_M suum=(user_M) ap.getBean("user_M");//<bean id="user_M" class="user_Model.user_M"></bean>
-            suum.setId(suuser_id);
-            suum.setPw(suuser_pw);
-            suum.setUM_number(suuser_id_number);
+            User1Entity suum=(User1Entity ) ap.getBean("HIBuser_M");//<bean id="user_M" class="user_Model.user_M"></bean>
+            suum.setUserName(suuser_id);
+            suum.setUserPw(suuser_pw);
+            suum.setUserOrMaster(suuser_id_number);
             boolean after_check=AC.check_ID(suum);
             if(after_check!=true) {
                 try {

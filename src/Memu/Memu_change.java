@@ -3,6 +3,7 @@ package Memu;
 import Memu_interface.Memu_ACT;
 import Memu_interface.set_get_memu;
 import Memu_model.Memu_M;
+import Test_HIB.MemuEntity;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -29,7 +30,7 @@ public class Memu_change extends HttpServlet {
         String xml= "Project.xml";
         ApplicationContext ap=new ClassPathXmlApplicationContext(xml);
         Memu_ACT AC=(Memu_ACT) ap.getBean("Memu_A");//<bean id="Test" class="user_Model.user_Action"></bean>
-        Memu_M mmc=(Memu_M) ap.getBean("Memu_M");//<bean id="user_M" class="user_Model.user_
+        MemuEntity mmc=(MemuEntity) ap.getBean("HIBMemu_M");//<bean id="user_M" class="user_Model.user_
 
 
         String memu_delete=request.getParameter("memu_delete");
@@ -41,7 +42,7 @@ public class Memu_change extends HttpServlet {
 
         if(memu_delete!=null){
             try {
-                mmc.setMemu_ID(Integer.parseInt(request.getParameter("memu_delete")));
+                mmc.setMemuId(Integer.parseInt(request.getParameter("memu_delete")));
                 AC.Delete(mmc);
                 RequestDispatcher rd=request.getRequestDispatcher("/Show_Change_memu");//show_memu_java
                 rd.forward(request,response);
@@ -79,9 +80,12 @@ public class Memu_change extends HttpServlet {
             int selectADD=Integer.parseInt(request.getParameter("selectADD"));
             System.out.println("memu_nameADD---> "+memu_nameADD+"  memu_priceADD--> "+memu_priceADD+
                     "  selectADD--> "+selectADD);
-            mmc.setMemu_name(memu_nameADD);
-            mmc.setMemu_price(memu_priceADD);
-            mmc.setMeal_ID(selectADD);
+            mmc.setName(memu_nameADD);
+            mmc.setPrice(memu_priceADD);
+            mmc.setMealId(selectADD);
+//            mmc.setMemu_name(memu_nameADD);
+//            mmc.setMemu_price(memu_priceADD);
+//            mmc.setMeal_ID(selectADD);
             try {
                 AC.increase_meum(mmc);
                 RequestDispatcher rd=request.getRequestDispatcher("/Show_Change_memu");//show_memu_java

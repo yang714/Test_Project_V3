@@ -3,6 +3,9 @@ package user_Model;
 import java.util.Date;
 
 public class user_M{
+    public user_M() {
+    }
+
 
 
     public String getId() {

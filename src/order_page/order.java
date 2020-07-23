@@ -3,6 +3,7 @@ package order_page;
 import Interface.Action;
 import Memu_model.Memu_M;
 import Table_Model.Table_model;
+import Test_HIB.MemuEntity;
 import order_interface.order_inf;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -30,13 +31,13 @@ public class order extends HttpServlet {//顯示page
         ApplicationContext ap=new ClassPathXmlApplicationContext(xml);
         order_inf AC=(order_inf) ap.getBean("Table_A");//<bean id="Test" class="user_Model.user_Action"></bean>
         Table_model TM=(Table_model) ap.getBean("Table_model");
-        Memu_M mm=(Memu_M) ap.getBean("Memu_M");
+        MemuEntity mm=(MemuEntity) ap.getBean("HIBMemu_M");
         String out=request.getParameter("out");
 
 
         try {
 
-               Table_model[] total=AC.Table_name(TM);
+               ArrayList total=AC.Table_name();
                request.getSession().setAttribute("sql_table_name",total);//table name AC.Table_name(TM); for jsp
                request.getSession().removeAttribute("select_table_number");
 
@@ -63,7 +64,8 @@ public class order extends HttpServlet {//顯示page
         System.out.println("----"+table_name);
         if(table_name!=null){
             try {
-                Table_model[] reTM = AC.Table_number(TM, (String) request.getSession().getAttribute("select_table_name"));
+//                Table_model[] reTM = AC.Table_number(TM, (String) request.getSession().getAttribute("select_table_name"));
+                ArrayList reTM = AC.Table_number( (String) request.getSession().getAttribute("select_table_name"));
                 request.getSession().setAttribute("sql_table_number",reTM);//table name AC.Table_name(TM);
                  String table_number=request.getParameter("select_table_number");
                 request.getSession().setAttribute("select_table_number",table_number);
@@ -72,15 +74,15 @@ public class order extends HttpServlet {//顯示page
             }
         }
 //        Memu_M[] Sm = new Memu_M[0];
-        ArrayList<Memu_M> Sm=new ArrayList();
+        ArrayList<MemuEntity> Sm=new ArrayList();
         try {
             Sm = AC.call_Memu(mm);
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        for (Memu_M i : Sm) {
-                        System.out.println("1--> "+i.getMemu_name()+"   "+i.getFood_type());
+        for (MemuEntity i : Sm) {
+                        System.out.println("1--> "+i.getName()+"   "+i.getMealId());
                     }
               request.getSession().setAttribute("shoew_memu",Sm);
 

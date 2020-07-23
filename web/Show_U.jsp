@@ -49,12 +49,18 @@
     </tr>
     <c:forEach var="i" items="${show_model}">
     <tr >
-        <td style="vertical-align: middle">${i.id_number}</td>
+<%--        <td style="vertical-align: middle">${i.id_number}</td>--%>
+<%--        <td style="vertical-align: middle">${i.id}</td>--%>
+<%--        <td style="vertical-align: middle">${i.date}</td>--%>
+<%--        <td style="vertical-align: middle">${i.UM_number}</td>--%>
+
         <td style="vertical-align: middle">${i.id}</td>
+        <td style="vertical-align: middle">${i.userName}</td>
         <td style="vertical-align: middle">${i.date}</td>
-        <td style="vertical-align: middle">${i.UM_number}</td>
+        <td style="vertical-align: middle">${i.userOrMaster}</td>
         <td style="vertical-align: middle">
-      <button value="${i.id_number}" name="user_infor" class="btn btn-danger btn-lg" style="font-size: 30px">
+            <button value="${i.id}" name="user_infor" class="btn btn-danger btn-lg" style="font-size: 30px">
+<%--      <button value="${i.id_number}" name="user_infor" class="btn btn-danger btn-lg" style="font-size: 30px">--%>
        <span class="glyphicon glyphicon-remove"></span></button>
         </td>
 <%--        <td><input value="${i.id}" name="test" type="submit"></td>--%>

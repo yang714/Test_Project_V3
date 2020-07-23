@@ -2,26 +2,19 @@ package Check_Out;
 
 import Check_out_interface.Check_out_intf;
 import Check_out_model.Checkout_model;
-import Discount.Discount_A;
 import Discount.Discount_M;
 import Discount.Discount_inf;
-import Interface.Action;
+import Test_HIB.DiscountPEntity;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import user_Model.user_M;
 
-import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -164,7 +157,7 @@ public class Check_out2db extends HttpServlet {
             request.getSession().removeAttribute("Check");
 
 //        Discount_M[] show_dis=DA.Show_Delete();
-            ArrayList<Discount_M> show_dis = DA.Show_Delete();
+            ArrayList<DiscountPEntity> show_dis = DA.Show_Delete();
 
             request.getSession().setAttribute("show_dis", show_dis);
             RequestDispatcher RD = request.getRequestDispatcher("/show_detail.jsp");

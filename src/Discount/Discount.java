@@ -1,6 +1,7 @@
 package Discount;
 
 import Table_Model.Table_model;
+import Test_HIB.DiscountPEntity;
 import order_interface.order_inf;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -30,7 +31,7 @@ public class Discount extends HttpServlet {
         String xml= "Project.xml";
         ApplicationContext ap=new ClassPathXmlApplicationContext(xml);
         Discount_inf DAC=(Discount_inf) ap.getBean("Discount_A");//<bean id="Test" class="user_Model.user_Action"></bean>
-        Discount_M DM=(Discount_M) ap.getBean("Discount_model");
+//        Discount_M DM=(Discount_M) ap.getBean("Discount_model");
 
         String Discount_name=request.getParameter("Dname");
         String Discount_percent=request.getParameter("Dpercent");
@@ -52,7 +53,7 @@ public class Discount extends HttpServlet {
             else if(request.getAttribute("Show_delete")!=null){
                 System.out.println("-*--------request.getAttribute(\"Show_delete\")------"+ request.getAttribute("Show_delete"));
 //                Discount_M[] DDAC=DAC.Show_Delete();
-                ArrayList<Discount_M>DDAC=DAC.Show_Delete();
+                ArrayList<DiscountPEntity>DDAC=DAC.Show_Delete();
 //                request.getSession().setAttribute("Show_delete",DDAC);
                 request.setAttribute("Show_delete",DDAC);
                 System.out.println("here");

@@ -67,7 +67,7 @@
 
     <select name="select_delete"  class="selectpicker">
         <c:forEach var="j" items="${Show_delete}">
-            <option value="${j.disID}">${j.disname} / ${j.dispercent}</option>
+            <option value="${j.discountId}">${j.discountName} / ${j.discountPercent}</option>
         </c:forEach>
     </select>
 <input type="submit" value="DelDiscount" name="DelDiscount" class="btn btn-danger btn-lg">

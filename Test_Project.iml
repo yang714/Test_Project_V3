@@ -18,6 +18,24 @@
         </fileset>
       </configuration>
     </facet>
+    <facet type="hibernate" name="Hibernate">
+      <configuration>
+        <datasource-map>
+          <unit-entry name="hibernate.cfg.xml" value="5553971c-d0cf-49a0-89f9-a417ff401dbf" />
+        </datasource-map>
+        <naming-strategy-map />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/hibernate.cfg.xml" />
+      </configuration>
+    </facet>
+    <facet type="jpa" name="JPA">
+      <configuration>
+        <setting name="validation-enabled" value="true" />
+        <datasource-mapping>
+          <factory-entry name="Test_Project" />
+        </datasource-mapping>
+        <naming-strategy-map />
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -52,5 +70,14 @@
     <orderEntry type="library" name="uk.co.caprica:vlcj:3.12.1" level="project" />
     <orderEntry type="library" name="javacv-platform-1.5.3" level="project" />
     <orderEntry type="library" name="javacv-platform-1.5" level="project" />
+    <orderEntry type="library" name="org.hibernate:hibernate-core:5.4.10.Final" level="project" />
+    <orderEntry type="library" name="antlr:antlr:2.7.7" level="project" />
+    <orderEntry type="library" name="commons-collections:commons-collections:3.2.2" level="project" />
+    <orderEntry type="library" name="commons-logging:commons-logging:1.2" level="project" />
+    <orderEntry type="library" name="Simple Logging Facade for Java:1.7.30" level="project" />
+    <orderEntry type="library" name="Simple Logging Facade for Java:1.7.301" level="project" />
+    <orderEntry type="library" name="hibernate-release-5.4.181" level="project" />
+    <orderEntry type="library" name="dom4j-2.0.3" level="project" />
+    <orderEntry type="library" name="c3p0:c3p0:0.9.1.2" level="project" />
   </component>
 </module>

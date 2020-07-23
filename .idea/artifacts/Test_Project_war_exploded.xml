@@ -2,28 +2,36 @@
   <artifact type="exploded-war" name="Test_Project:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/Test_Project_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="Test_Project/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="Test_Project" />
-          <element id="library" level="project" name="apache-tomcat-9.0" />
+          <element id="library" level="project" name="hibernate-release-5.4.181" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Spring-5.2.3.RELEASE" />
-          <element id="library" level="project" name="servlet-api" />
+          <element id="library" level="project" name="apache-tomcat-9.0" />
+          <element id="library" level="project" name="javax.servlet:jstl:1.2" />
           <element id="library" level="project" name="jstl-1.2" />
           <element id="library" level="project" name="lib" />
-          <element id="library" level="project" name="javax.servlet:jstl:1.2" />
           <element id="library" level="project" name="json-lib-2.4-jdk15" />
-          <element id="library" level="project" name="sqljdbc42" />
-          <element id="library" level="project" name="mssql-jdbc-8.2.2.jre13" />
           <element id="library" level="project" name="json-simple-1.1" />
+          <element id="library" level="project" name="mssql-jdbc-8.2.2.jre13" />
+          <element id="library" level="project" name="sqljdbc42" />
           <element id="library" level="project" name="vlcj-4.4" />
           <element id="library" level="project" name="uk.co.caprica:vlcj:3.12.1" />
           <element id="library" level="project" name="javacv-platform-1.5.3" />
           <element id="library" level="project" name="javacv-platform-1.5" />
+          <element id="library" level="project" name="org.hibernate:hibernate-core:5.4.10.Final" />
+          <element id="library" level="project" name="antlr:antlr:2.7.7" />
+          <element id="library" level="project" name="commons-collections:commons-collections:3.2.2" />
+          <element id="library" level="project" name="commons-logging:commons-logging:1.2" />
+          <element id="library" level="project" name="Simple Logging Facade for Java:1.7.30" />
+          <element id="library" level="project" name="Simple Logging Facade for Java:1.7.301" />
+          <element id="library" level="project" name="dom4j-2.0.3" />
+          <element id="library" level="project" name="c3p0:c3p0:0.9.1.2" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="Test_Project/web/Web" />
     </root>
   </artifact>
 </component>

@@ -94,7 +94,8 @@
         <option>-</option>
 <%--        <c:if test=""--%>
             <c:forEach var="j" items="${sessionScope.sql_table_name}">
-                <option>${j.table_name}</option>
+<%--                <option>${j.table_name}</option>--%>
+                <option>${j.tableName}</option>
             </c:forEach>
     </select>
     </div>
@@ -106,7 +107,7 @@
         <select name="select_table_number" onchange="this.form.submit()" class="selectpicker form-control" >
             <option>-</option>
             <c:forEach var="i" items="${sessionScope.sql_table_number}">
-            <option>${i.table_number}</option>
+            <option>${i.tableNumber}</option>
         </c:forEach>
         </select>
    </div>
@@ -151,7 +152,7 @@
                     <td style="font-size: 30px">
                         <select name="meal_order" id="select_meal" class="selectpicker" >
                         <c:forEach var="i" items="${sessionScope.shoew_memu}">
-                            <option value=${i.memu_ID}>${i.memu_name}</option>
+                            <option value=${i.memuId}>${i.name}</option>
                         </c:forEach>
                     </select>
                     </td>

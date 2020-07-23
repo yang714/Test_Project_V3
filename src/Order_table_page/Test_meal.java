@@ -8,14 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-import Interface.Action;
 import Memu_model.Memu_M;
 import Order_Table.Order_Table_Interface;
-import org.json.simple.JSONObject;
+import Test_HIB.MemuEntity;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import user_Model.user_M;
 
 @WebServlet("/Test_meal")
 public class Test_meal extends HttpServlet {
@@ -62,15 +61,16 @@ public class Test_meal extends HttpServlet {
             String xml = "Project.xml";
             ApplicationContext ap = new ClassPathXmlApplicationContext(xml);
             Order_Table_Interface AC = (Order_Table_Interface) ap.getBean("Order_A");//<bean id="Test" class="user_Model.user_Action"></bean>
-            Memu_M um = (Memu_M) ap.getBean("Memu_M");//<bean id="user_M" class="user_Model.user_M"></bean>
-
+//            Memu_M um = (Memu_M) ap.getBean("Memu_M");//<bean id="user_M" class="user_Model.user_M"></bean>
+//            MemuEntity um = (MemuEntity) ap.getBean("HIBMemu_M");
             try {
                 int t_id = AC.FindTable_ID(tname, tnumber);
-                Memu_M[] om = AC.Save_Order(ccc, c, cc);
-                for (Memu_M i : om) {
-                    System.out.println("id-->  " + i.getMemu_ID() + "---name--" + i.getMemu_name() + "   number " + i.getOrder_meal_number());
+//                Memu_M[] om = AC.Save_Order(ccc, c, cc);
+                ArrayList<MemuEntity>om = AC.Save_Order(ccc, c, cc);
+                for (MemuEntity i : om) {
+//                    System.out.println("id-->  " + i.getMemuId() + "---name--" + i.getName()+ "   number " + i.getOrder_meal_number());
                 }
-                System.out.println("om size" + om.length);
+                System.out.println("om size" + om.size());
                 AC.SaveOrder2DataB(request.getSession().getAttribute("user_id"), t_id, om);
                 System.out.println("T_ID  " + t_id);
 ///
