@@ -68,7 +68,8 @@ public class Table_Action implements order_inf {
     public ArrayList<TableKindEntity> Table_number(String Table_name) throws SQLException {
         /****************************/
         Session session =HibernateUtil.getSessionFactory().openSession();
-        Query query=session.createQuery("from TableKindEntity");
+        Query query=session.createQuery("from TableKindEntity TKE where TKE.tableName=?1");
+        query.setParameter(1,Table_name);
         Iterator us=query.list().iterator();
         ArrayList<TableKindEntity>ALT=new ArrayList<TableKindEntity>();
         while (us.hasNext()){
