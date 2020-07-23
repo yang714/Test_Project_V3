@@ -111,12 +111,14 @@ public class Check_out_Action implements Check_out_intf {
     public String Tableidname(int id) throws SQLException {
         //********************************************//
         Session session=HibernateUtil.getSessionFactory().openSession();
-        Query query=session.createQuery("FROM TableKindEntity");
+        Query query=session.createQuery("FROM TableKindEntity TKE where TKE.tableId=?1");
+        query.setParameter(1,id);
         Iterator test=query.list().iterator();
         String a = null;
         while (test.hasNext()){
             TableKindEntity TKE=(TableKindEntity)test.next();
-            a=TKE.getTableName()+TKE.getTableid_name();
+            a=TKE.getTableName()+TKE.getTableNumber();
+            System.out.println("A--->"+a);
         }
         //*********************************************//
 //        Connection cnn = ds.getConnection();

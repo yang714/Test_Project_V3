@@ -77,7 +77,7 @@ public class Check_out2db extends HttpServlet {
                 if (ccm.size() == 0) {//not order table
 //                        tablename = ca.Tableidname(Integer.parseInt(request.getParameter("jojo")));//?
                     tablename = ca.Tableidname(Integer.parseInt((String) request.getSession().getAttribute("PARAM")));//?
-                    request.setAttribute("order_table_free", tablename + "table not order");
+                    request.setAttribute("order_table_free", tablename + " table not order");
                 }
 
                 request.getSession().setAttribute("check_outorder", ccm);
