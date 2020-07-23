@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="Test_HIB.CheckOutEntity" table="Check_out" schema="dbo" catalog="Test_DataBase">
+        <id name="checkId" column="Check_ID"/>
+        <property name="orderId" column="Order_ID"/>
+        <property name="whoOrder" column="who_order"/>
+        <property name="whoCheck" column="who_check"/>
+        <property name="memuId" column="memu_ID"/>
+        <property name="checkNumber" column="check_number"/>
+        <property name="disP" column="Dis_P"/>
+        <property name="originPrice" column="OriginPrice"/>
+        <property name="discountPrice" column="DiscountPrice"/>
+        <property name="checkDate" column="Check_Date"/>
+    </class>
+</hibernate-mapping>

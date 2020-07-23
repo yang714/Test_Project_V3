@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="Test_HIB.OrderTableEntity" table="OrderTable" schema="dbo" catalog="Test_DataBase">
+        <id name="orderId" column="Order_ID"/>
+        <property name="whoOrder" column="who_order"/>
+        <property name="orderTableId" column="orderTableID"/>
+        <property name="memuId" column="memu_ID"/>
+        <property name="orderNumber" column="order_number"/>
+        <property name="foodStatus" column="food_status"/>
+    </class>
+</hibernate-mapping>

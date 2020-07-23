@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="Test_HIB.DiscountPEntity" table="DiscountP" schema="dbo" catalog="Test_DataBase">
+        <id name="discountId" column="Discount_ID"/>
+        <property name="discountName" column="Discount_name"/>
+        <property name="discountPercent" column="Discount_Percent"/>
+    </class>
+</hibernate-mapping>

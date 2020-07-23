@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:sqlserver://localhost;database=Test_DataBase</property>
+
+    <!-- <property name="connection.username"/> -->
+    <!-- <property name="connection.password"/> -->
+    <property name="show_sql">true</property>
+    <!-- 將顯示的SQL排版，方便觀看 -->
+    <property name="format_sql">true</property>
+    <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
+    <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+    <property name="connection.password">DIO</property>
+    <property name="connection.username">sa</property>
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+
+    <mapping resource="CheckOutEntity.hbm.xml"/>
+<!--    <mapping class="Test_HIB.CheckOutEntity"/>-->
+    <mapping resource="DiscountPEntity.hbm.xml"/>
+    <mapping class="Test_HIB.DiscountPEntity"/>
+    <mapping resource="MealTypeEntity.hbm.xml"/>
+    <mapping class="Test_HIB.MealTypeEntity"/>
+    <mapping resource="MemuEntity.hbm.xml"/>
+    <mapping class="Test_HIB.MemuEntity"/>
+    <mapping resource="OrderTableEntity.hbm.xml"/>
+    <mapping class="Test_HIB.OrderTableEntity"/>
+    <mapping resource="TableKindEntity.hbm.xml"/>
+    <mapping class="Test_HIB.TableKindEntity"/>
+    <mapping resource="User1Entity.hbm.xml"/>
+    <mapping class="Test_HIB.User1Entity"/>
+
+    <mapping class="Test_HIB.CheckOutEntity"/>
+<!--    <mapping class="Test_HIB.SysdiagramsEntity"/>-->
+<!--    <mapping resource="SysdiagramsEntity.hbm.xml"/>-->
+
+  </session-factory>
+</hibernate-configuration>

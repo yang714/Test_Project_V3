@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="Test_HIB.SysdiagramsEntity" table="sysdiagrams" schema="dbo" catalog="Test_DataBase">
+        <id name="diagramId" column="diagram_id"/>
+        <property name="name" column="name"/>
+        <property name="principalId" column="principal_id"/>
+        <property name="version" column="version"/>
+        <property name="definition" column="definition"/>
+    </class>
+</hibernate-mapping>

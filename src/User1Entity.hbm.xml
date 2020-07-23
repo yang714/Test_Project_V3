@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="Test_HIB.User1Entity" table="User_1" schema="dbo" catalog="Test_DataBase">
+        <id name="id" column="ID"/>
+        <property name="userName" column="user_name"/>
+        <property name="userPw" column="user_pw"/>
+        <property name="userOrMaster" column="UserOrMaster"/>
+        <property name="date" column="Date"/>
+    </class>
+</hibernate-mapping>
