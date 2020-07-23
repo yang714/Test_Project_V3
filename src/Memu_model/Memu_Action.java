@@ -39,8 +39,11 @@ public class Memu_Action implements Memu_ACT {
         while(us.hasNext()){
 //            System.out.println("here");
 //            MemuEntity me=(MemuEntity) us.next()
-            HAMM.add((MemuEntity) us.next());
+//            System.out.println(((MemuEntity) us.next()).getName());
+            MemuEntity me=  (MemuEntity) us.next();
+            HAMM.add(me);
         }
+        System.out.println("HAMM-->"+HAMM.size());
         return  HAMM;
 
         //********************************//

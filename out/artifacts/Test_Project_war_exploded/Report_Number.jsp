@@ -10,6 +10,9 @@
 
 <html>
 <head>
+    <style>
+        @import url("CSS/report.css");
+    </style>
     <title>Report sell number</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
@@ -36,8 +39,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
 </head>
 <body>
+
 <div class="container">
-    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-99 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div id="loginbox" style="margin-top:50px;" class="mainbox  col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div class="panel panel-info" >
             <div class="panel-heading" style="height: 60px;padding:0 ;" >
                 <div class="panel-title" style="font-size: 35px">Report</div>
@@ -46,10 +50,11 @@
     <div style="margin-bottom: 25px" class="input-group input-group-lg">
         <div>
     <input type="submit" name="Meal" value="Meal" class="btn btn-primary btn-lg "style="margin-right: 50px">
-    <input type="submit" name="Memu" value="Memu" class="btn btn-primary btn-lg">
+    <input type="submit" name="Memu" value="Memu" class="btn btn-primary btn-lg" style="margin-right: 50px">
         </div>
     </div>
 </form>
+            <h1>${sessionScope.CHtype}</h1>
 <form action="RPCBD" method="post">
 
     <c:choose>
@@ -61,13 +66,13 @@
 <%--                    <div>food_type</div>--%>
 
       <c:forEach var="i" items="${food_type}"  varStatus="idxStatus">
-    <div class="form-check ">
+    <div class="form-check for_size ">
 <%--        <label style="font-size: 2em" >--%>
-          <input name="Check_out_box" type="checkbox" id="f+${i.mealId}+"  value=${i.mealId} >
+          <input name="Check_out_box" type="checkbox" id="f+${i.mealId}+"  value=${i.mealId} >${i.type} /${i.mealId}
 <%--    <label style="font-size: 2em" >--%>
 <%--            <span class="cr"><i class="cr-icon fa fa-check" style="font-size: 25px"> ${i.food_type} </i></span>--%>
 
-            <label for='f${i.mealId}' style="font-size: 25px">${i.type} /${i.mealId}</label>
+<%--            <label for='f${i.mealId}' class="for_size">${i.type} /${i.mealId}</label>--%>
 <%--                        <span class="label-text">${i.food_type}</span>--%>
 <%--        </label>--%>
     </div>
@@ -80,11 +85,14 @@
     <c:when test="${sessionScope.CHtype=='Memu'}">
         <div style="margin-bottom: 24px" class="input-group input-group-lg">
 <%--    <div>memu</div>--%>
+<%--            <H1>JOJO</H1>--%>
     <div class="form-check">
     <c:forEach var="j" items="${show_memu}"  varStatus="idxStatus">
-        <div class="form-check">
-        <input name="Check_out_box" type="checkbox" id="m+${j.memuID}+"  value=${j.memuID} >
-        <label for='m${j.memuID}' style="font-size: 25px">${j.name} </label>
+        <div class="form-check for_size">
+
+            <input name="Check_out_box" type="checkbox" id="m+${j.memuId}+"  value=${j.memuId} >${j.name}
+<%--            <label for='m${j.memuId}'class="for_size" >${j.name} </label>--%>
+<%--            <h1>${j.memuId}</h1>--%>
 <%--            <span class="cr"><i class="cr-icon fa fa-check" style="font-size: 25px">${j.memu_name} </i></span>--%>
         </div>
     </c:forEach>

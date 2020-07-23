@@ -39,11 +39,13 @@ public class ReportN extends HttpServlet {
 
         }
         else if(request.getParameter("Memu")!=null){
+
             request.getSession().setAttribute("CHtype",request.getParameter("Memu"));
 //            request.setAttribute("CHtype",request.getParameter("Memu"));
             ArrayList<MemuEntity> Show_memu= AC.Show_memu(mm);
             request.setAttribute("show_memu",Show_memu);
             request.getSession().setAttribute("show_memu",Show_memu);//
+            System.out.println("Show_memu-->"+Show_memu);
         }
         try {
             ArrayList<Integer>AY= RAC.Report_GETY();
