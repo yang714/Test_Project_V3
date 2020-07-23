@@ -4,11 +4,12 @@ import HibernateUtilpack.HibernateUtil;
 import Memu_model.Memu_M;
 import Order_Table.Order_Table_Interface;
 import Test_HIB.MemuEntity;
+import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import javax.annotation.Resource;
-import javax.management.Query;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -62,24 +63,39 @@ public class Order_Table_Action implements Order_Table_Interface {
     public void SaveOrder2DataB(Object user_id,int t_id, ArrayList<MemuEntity> MO) throws SQLException {
         //Hibernet*JDBC Batch***********************************//
         Session session= HibernateUtil.getSessionFactory().openSession();
-        Connection cnn=ds.getConnection();
-        String sql=("INSERT INTO OrderTable (who_order,orderTableID," +
-                "memu_ID,order_number,food_status)\n" +
-                "VALUES (?,?,?,?,?) ");
-        PreparedStatement ps=cnn.prepareStatement(sql);
+        Transaction tx= session.beginTransaction();
+       SQLQuery query=session.createSQLQuery("INSERT INTO OrderTable (who_order,orderTableID," +
+               "memu_ID,order_number,food_status)\n" +
+               "VALUES (?1,?2,?3,?4,?5) ");
         for(int i=0;i<MO.size();i++){
+            query.setParameter(1,(Integer) user_id);
+            query.setParameter(2,t_id);
+            query.setParameter(3, MO.get(i).getMemuId());
+            query.setParameter(4,MO.get(i).getOrder_meal_number());
+            query.setParameter(5,0);
 
-//            System.out.println(" Integer.parseInt(id[i])  "+ Integer.parseInt(id[i]));
-            ps.setInt(1, (Integer) user_id);
-            ps.setString(2, String.valueOf(t_id));
-            ps.setInt(3, MO.get(i).getMemuId());
-            ps.setInt(4, MO.get(i).getOrder_meal_number());
-            ps.setInt(5, 0);
-            ps.addBatch();
         }
-
-        ps.executeBatch();
-        cnn.close();
+        tx.commit();
+        session.close();
+        /***********************************************************/
+//        Connection cnn=ds.getConnection();
+//        String sql=("INSERT INTO OrderTable (who_order,orderTableID," +
+//                "memu_ID,order_number,food_status)\n" +
+//                "VALUES (?,?,?,?,?) ");
+//        PreparedStatement ps=cnn.prepareStatement(sql);
+//        for(int i=0;i<MO.size();i++){
+//
+////            System.out.println(" Integer.parseInt(id[i])  "+ Integer.parseInt(id[i]));
+//            ps.setInt(1, (Integer) user_id);
+//            ps.setString(2, String.valueOf(t_id));
+//            ps.setInt(3, MO.get(i).getMemuId());
+//            ps.setInt(4, MO.get(i).getOrder_meal_number());
+//            ps.setInt(5, 0);
+//            ps.addBatch();
+//        }
+//
+//        ps.executeBatch();
+//        cnn.close();
         //*************************************//
 
 //        Connection cnn=ds.getConnection();
