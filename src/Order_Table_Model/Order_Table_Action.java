@@ -90,16 +90,18 @@ public class Order_Table_Action implements Order_Table_Interface {
         Transaction tx= session.beginTransaction();
        SQLQuery query=session.createSQLQuery("INSERT INTO OrderTable (who_order,orderTableID," +
                "memu_ID,order_number,food_status)\n" +
-               "VALUES (?1,?2,?3,?4,?5) ");
+               "VALUES (?,?,?,?,?) ");
         for(int i=0;i<MO.size();i++){
-            query.setParameter(1,(Integer) user_id);
+            query.setParameter(1,Integer.valueOf((Integer) user_id));
             query.setParameter(2,t_id);
             query.setParameter(3, MO.get(i).getMemuId());
             query.setParameter(4,MO.get(i).getOrder_meal_number());
             query.setParameter(5,0);
+            query.executeUpdate();
 
         }
         tx.commit();
+
         session.close();
         /***********************************************************/
 //        Connection cnn=ds.getConnection();
