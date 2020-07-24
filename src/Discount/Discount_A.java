@@ -32,13 +32,20 @@ public class Discount_A implements Discount_inf{
 //*****************************************************************//
         Session session=HibernateUtil.getSessionFactory().openSession();
         Transaction tx= session.beginTransaction();
-        String sql="INSERT INTO DiscountP (Discount_name, Discount_Percent) VALUES (?, ?)";
-        SQLQuery query=session.createSQLQuery(sql);
-        query.setParameter(1,Discount_name);
-        query.setParameter(2,Discount_percent);
-        query.executeUpdate();
-        tx.commit();
-        session.close();
+        try {
+            String sql="INSERT INTO DiscountP (Discount_name, Discount_Percent) VALUES (?, ?)";
+            SQLQuery query=session.createSQLQuery(sql);
+            query.setParameter(1,Discount_name);
+            query.setParameter(2,Discount_percent);
+            query.executeUpdate();
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
         //***************************************************************//
 
 //        BigDecimal BDiscount_percent = new BigDecimal(Discount_percent);
@@ -60,10 +67,17 @@ public class Discount_A implements Discount_inf{
         Session session=HibernateUtil.getSessionFactory().openSession();
         String sql="DELETE FROM DiscountP WHERE Discount_ID=?";
         Transaction tx= session.beginTransaction();
-        SQLQuery query=session.createSQLQuery(sql);
-        query.setParameter(1,Integer.parseInt(SeleID));
-        tx.commit();
-        query.executeUpdate();
+        try {
+            SQLQuery query=session.createSQLQuery(sql);
+            query.setParameter(1,Integer.parseInt(SeleID));
+            query.executeUpdate();
+            tx.commit();
+        } catch (NumberFormatException e) {
+            tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
         //****************************/
 //        Connection cnn=ds.getConnection();
 //        PreparedStatement ps=cnn.prepareStatement("DELETE FROM DiscountP\n" +
