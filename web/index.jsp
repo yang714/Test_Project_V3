@@ -9,7 +9,7 @@
 <html>
   <head>
 
-    <title>Sign In !!!!!!</title>
+    <title>Sign In</title>
       <%--  <script src="js/check_login_char_number.js"/>--%>
 
       <!-- Latest compiled and minified CSS -->
@@ -31,7 +31,7 @@
     <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-99 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div class="panel panel-info" >
             <div class="panel-heading" style="height: 60px;padding:0 ;" >
-            <div class="panel-title" style="font-size: 35px">Sign In Hibernet</div>
+            <div class="panel-title" style="font-size: 35px">Sign</div>
             </div>
 <form action="index" method="post" >
     <div style="margin-bottom: 25px" class="input-group input-group-lg">
