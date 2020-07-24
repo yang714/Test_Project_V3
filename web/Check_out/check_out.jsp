@@ -106,11 +106,11 @@
         <c:forEach var="j" items="${sessionScope.table_name_id}">
             <c:choose>
 <%--                <c:when test="${requestScope.table_id==j.table_ID}">--%>
-                <c:when test="${sessionScope.table_id==j.table_ID}">
-                    <option value=${j.table_ID} SELECTED >${j.tablenamenumber} </option>
+                <c:when test="${sessionScope.table_id==j.tableId}">
+                    <option value=${j.tableId} SELECTED >${j.tablename_number} </option>
                 </c:when>
                 <c:otherwise>
-                    <option value=${j.table_ID}>${j.tablenamenumber} </option>
+                    <option value=${j.tableId}>${j.tablename_number} </option>
                 </c:otherwise>
             </c:choose>
 

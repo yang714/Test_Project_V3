@@ -8,12 +8,10 @@ import Test_show_total.Show_T;
 import order_interface.order_inf;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -112,40 +110,52 @@ public class Table_Action implements order_inf {
     }
 
     @Override
-    public Table_model[] Table_namenumber(Table_model TM) throws SQLException {//all table_name
+    public ArrayList<TableKindEntity> Table_namenumber(Table_model TM) throws SQLException {//all table_name
         /************************************************/
-//        Session session =HibernateUtil.getSessionFactory().openSession();
-//        Query query=session.createQuery("from TableKindEntity");
-//        Iterator us=query.list().iterator();
-//
-//        while (us.hasNext()){
-
-//        }
-        /************************************************/
-
-
-        Connection cnn=ds.getConnection();
-
-        int count=ss.Show_total("SELECT count(*)\n" +
-                "  FROM [Test_DataBase].[dbo].[Table_Kind]");
-        PreparedStatement ps=cnn.prepareStatement(
-                "SELECT [Table_ID]\n" +
-                        "      ,[Table_Name]\n" +
-                        "      ,[Table_number]\n" +
-                        "\t  ,Table_Name+ CONVERT(varchar(10), Table_number) as name_number\n" +
-                        "  FROM [Test_DataBase].[dbo].[Table_Kind]");
-        Table_model[] TNN=new Table_model[count];
-        ResultSet rs=ps.executeQuery();
-        int c=0;
-        while(rs.next()){
-            TM=new Table_model();
-            TM.setTable_ID(rs.getInt(1));
-            TM.setTablenamenumber(rs.getString(4));
-            TNN[c]=TM;
-            c=c+1;
+        Session session =HibernateUtil.getSessionFactory().openSession();
+        Transaction tx=session.beginTransaction();
+        ArrayList<TableKindEntity> ALT= null;
+        try {
+            Query query=session.createQuery("from TableKindEntity");
+            Iterator us=query.list().iterator();
+            ALT = new ArrayList<>();
+            while (us.hasNext()){
+                TableKindEntity TKE=(TableKindEntity)us.next();
+                TKE.setTablename_number(TKE.getTableName()+TKE.getTableNumber());
+                ALT.add(TKE);
+            }
+        } catch (Exception e) {
+            tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
         }
+        return  ALT;
+        /************************************************/
 
-        return TNN;
+
+//        Connection cnn=ds.getConnection();
+//
+//        int count=ss.Show_total("SELECT count(*)\n" +
+//                "  FROM [Test_DataBase].[dbo].[Table_Kind]");
+//        PreparedStatement ps=cnn.prepareStatement(
+//                "SELECT [Table_ID]\n" +
+//                        "      ,[Table_Name]\n" +
+//                        "      ,[Table_number]\n" +
+//                        "\t  ,Table_Name+ CONVERT(varchar(10), Table_number) as name_number\n" +
+//                        "  FROM [Test_DataBase].[dbo].[Table_Kind]");
+//        Table_model[] TNN=new Table_model[count];
+//        ResultSet rs=ps.executeQuery();
+//        int c=0;
+//        while(rs.next()){
+//            TM=new Table_model();
+//            TM.setTable_ID(rs.getInt(1));
+//            TM.setTablenamenumber(rs.getString(4));
+//            TNN[c]=TM;
+//            c=c+1;
+//        }
+//
+//        return TNN;
     }
 
 

@@ -64,4 +64,14 @@ public class TableKindEntity {
     }
 
     String tableid_name;
+
+    public String getTablename_number() {
+        return tablename_number;
+    }
+
+    public void setTablename_number(String tablename_number) {
+        this.tablename_number = tablename_number;
+    }
+
+    String tablename_number;
 }
