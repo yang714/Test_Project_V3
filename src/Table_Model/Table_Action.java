@@ -115,10 +115,11 @@ public class Table_Action implements order_inf {
     public Table_model[] Table_namenumber(Table_model TM) throws SQLException {//all table_name
         /************************************************/
 //        Session session =HibernateUtil.getSessionFactory().openSession();
-//        Query query=session.createQuery("SELECT tableId ,tableName ,tableNumber ,tableNumber as tableid_name from TableKindEntity");
+//        Query query=session.createQuery("from TableKindEntity");
 //        Iterator us=query.list().iterator();
-//        while (us.hasNext()){
 //
+//        while (us.hasNext()){
+
 //        }
         /************************************************/
 
@@ -143,6 +144,7 @@ public class Table_Action implements order_inf {
             TNN[c]=TM;
             c=c+1;
         }
+
         return TNN;
     }
 

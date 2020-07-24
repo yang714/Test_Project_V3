@@ -44,6 +44,7 @@ public class Memu_Action implements Memu_ACT {
             HAMM.add(me);
         }
         System.out.println("HAMM-->"+HAMM.size());
+        session.close();
         return  HAMM;
 
         //********************************//
@@ -91,6 +92,7 @@ public class Memu_Action implements Memu_ACT {
     public ArrayList<MealTypeEntity> Food_kind( MealTypeEntity mt)  {
         //********************************/
         Session session= HibernateUtil.getSessionFactory().openSession();
+
         Query query=session.createQuery("from  MealTypeEntity ");
         Iterator us=query.list().iterator();
         ArrayList< MealTypeEntity> HBFD=new ArrayList< MealTypeEntity>();
@@ -98,6 +100,7 @@ public class Memu_Action implements Memu_ACT {
             MealTypeEntity me= ( MealTypeEntity) us.next();
             HBFD.add(me);
         }
+        session.close();;
         return HBFD;
         //*******************************/
 //
@@ -126,7 +129,28 @@ public class Memu_Action implements Memu_ACT {
 //        System.out.println("id.length  "+id.length);
 
 //------------------------------------
+/**********************************************/
+Session session=HibernateUtil.getSessionFactory().openSession();
+Transaction tx=session.beginTransaction();
+Query query=session.createQuery("UPDATE MemuEntity MET set MET.name=?1,MET.price=?2,MET.mealId=?3 WHERE MET.memuId=?4");
+        try {
+            for(int i=0;i<id.length;i++){
+                query.setParameter(1,name[i]);
+                query.setParameter(2,Integer.parseInt(price[i]));
+                query.setParameter(3,Integer.parseInt(type[i]));
+                query.setParameter(4,Integer.parseInt(id[i]));
+                query.executeUpdate();
+            }
+            tx.commit();
+        } catch (NumberFormatException e) {
+            tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
 
+
+/********************************************/
 
         Connection cnn=ds.getConnection();;
         PreparedStatement ps=cnn.prepareStatement(
@@ -163,11 +187,18 @@ public class Memu_Action implements Memu_ACT {
         /*//Hibernet*******************************************************/
         Session session=HibernateUtil.getSessionFactory().openSession();
         Transaction tx= session.beginTransaction();
-        Query query=session.createQuery("delete MemuEntity WHERE memuId=?1");
-        query.setParameter(1,mm.getMemuId());
-        query.executeUpdate();
-        tx.commit();
-        session.close();
+        try {
+            Query query=session.createQuery("delete MemuEntity WHERE memuId=?1");
+            query.setParameter(1,mm.getMemuId());
+            query.executeUpdate();
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            tx.rollback();
+        } finally {
+            session.close();
+        }
+
         //***********************************************************/
 //        try {
 //            Connection cnn=ds.getConnection();
@@ -187,14 +218,23 @@ public class Memu_Action implements Memu_ACT {
         //Hibernet****************************/
         Session session=HibernateUtil.getSessionFactory().openSession();
         Transaction tx= session.beginTransaction();
-        String sql="INSERT INTO Memu (Name,Price,meal_ID) VALUES (?,?,?)";
-        SQLQuery query = session.createSQLQuery(sql);
-        query.setParameter(1,um.getName());
-        query.setParameter(2,um.getPrice());
-        query.setParameter(3,um.getMealId());
-        query.executeUpdate();
-        tx.commit();
-        session.close();
+        try {
+            String sql="INSERT INTO Memu (Name,Price,meal_ID) VALUES (?,?,?)";
+            SQLQuery query = session.createSQLQuery(sql);
+            query.setParameter(1,um.getName());
+            query.setParameter(2,um.getPrice());
+            query.setParameter(3,um.getMealId());
+            query.executeUpdate();
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            tx.rollback();
+
+        } finally {
+            session.close();
+        }
+
+
         //************************/
 //        try {
 //            Connection cnn = ds.getConnection();
@@ -217,12 +257,19 @@ public class Memu_Action implements Memu_ACT {
         /*****************************/
         Session session=HibernateUtil.getSessionFactory().openSession();
         Transaction tx= session.beginTransaction();
-        String sql="INSERT INTO Meal_type (Type) VALUES (?)";
-        SQLQuery query = session.createSQLQuery(sql);
-        query.setParameter(1,type_name);
-        query.executeUpdate();
-        tx.commit();
-        session.close();
+        try {
+            String sql="INSERT INTO Meal_type (Type) VALUES (?)";
+            SQLQuery query = session.createSQLQuery(sql);
+            query.setParameter(1,type_name);
+            query.executeUpdate();
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            tx.rollback();
+        } finally {
+            session.close();
+        }
+
         /*********************************/
 
 

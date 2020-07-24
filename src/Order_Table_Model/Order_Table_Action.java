@@ -49,18 +49,27 @@ public class Order_Table_Action implements Order_Table_Interface {
     public int FindTable_ID(String tablename, String tablenumber) throws SQLException {
         /*************************************/
         Session session=HibernateUtil.getSessionFactory().openSession();
-        Query query= session.createQuery("select TKE from TableKindEntity AS TKE where TKE.tableName=?1 and TKE.tableNumber=?2");
-       query.setParameter(1,tablename);
-       query.setParameter(2,Integer.valueOf(tablenumber));
+        Transaction tx=session.beginTransaction();
+        int t_id= 0;
+        try {
+            Query query= session.createQuery("select TKE from TableKindEntity AS TKE where TKE.tableName=?1 and TKE.tableNumber=?2");
+            query.setParameter(1,tablename);
+            query.setParameter(2,Integer.valueOf(tablenumber));
 //        Query query2= session.createQuery("select TKE from TableKindEntity as TKE" );
-        int t_id=0;
-        Iterator test=query.list().iterator();
-        while(test.hasNext()){
-            TableKindEntity jojo=  (TableKindEntity)test.next();
-//            System.out.println(jojo.getTableId());
-            t_id=jojo.getTableId();
+            t_id = 0;
+            Iterator test=query.list().iterator();
+            while(test.hasNext()){
+                TableKindEntity jojo=  (TableKindEntity)test.next();
+    //            System.out.println(jojo.getTableId());
+                t_id=jojo.getTableId();
+            }
+            tx.commit();
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            tx.rollback();
+        }finally {
+            session.close();
         }
-
 
 //        Iterator us=query.list().iterator();
 
@@ -88,21 +97,27 @@ public class Order_Table_Action implements Order_Table_Interface {
         //Hibernet*JDBC Batch***********************************//
         Session session= HibernateUtil.getSessionFactory().openSession();
         Transaction tx= session.beginTransaction();
-       SQLQuery query=session.createSQLQuery("INSERT INTO OrderTable (who_order,orderTableID," +
-               "memu_ID,order_number,food_status)\n" +
-               "VALUES (?,?,?,?,?) ");
-        for(int i=0;i<MO.size();i++){
-            query.setParameter(1,Integer.valueOf((Integer) user_id));
-            query.setParameter(2,t_id);
-            query.setParameter(3, MO.get(i).getMemuId());
-            query.setParameter(4,MO.get(i).getOrder_meal_number());
-            query.setParameter(5,0);
-            query.executeUpdate();
+        try {
+            SQLQuery query=session.createSQLQuery("INSERT INTO OrderTable (who_order,orderTableID," +
+                    "memu_ID,order_number,food_status)\n" +
+                    "VALUES (?,?,?,?,?) ");
+            for(int i=0;i<MO.size();i++){
+                query.setParameter(1,Integer.valueOf((Integer) user_id));
+                query.setParameter(2,t_id);
+                query.setParameter(3, MO.get(i).getMemuId());
+                query.setParameter(4,MO.get(i).getOrder_meal_number());
+                query.setParameter(5,0);
+                query.executeUpdate();
 
+            }
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            tx.rollback();
+        } finally {
+            session.close();
         }
-        tx.commit();
 
-        session.close();
         /***********************************************************/
 //        Connection cnn=ds.getConnection();
 //        String sql=("INSERT INTO OrderTable (who_order,orderTableID," +
