@@ -379,7 +379,9 @@ session.close();
             for (int i = 0; i < delete.size(); i++) {
                 query.setParameter(1,delete.get(i));
                 query.executeUpdate();
+
             }
+            tx.commit();
         } catch (Exception e) {
             tx.rollback();
             e.printStackTrace();
