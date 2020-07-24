@@ -194,27 +194,33 @@ session.close();
         Session session=HibernateUtil.getSessionFactory().openSession();
         Query query=session.createQuery("UPDATE OrderTableEntity OTE SET OTE.orderNumber=?1 ,OTE.foodStatus=?2 WHERE OTE.orderId=?3");
         ArrayList<Integer> deletee = new ArrayList();
-        int c = 0;
-        int resorder = 0;
-        for (String aa : IDOnumber) {
-            Transaction tx= session.beginTransaction();
-            String[] tokens = aa.split(",");
-            resorder = Integer.valueOf(tokens[1]) - Integer.valueOf(save_ordernymber.get(c));
-            if (resorder == 0) {
-                query.setParameter(2,1);
-                deletee.add(Integer.valueOf(tokens[0]));
-            } else {
-                query.setParameter(2,0);
+        Transaction tx= session.beginTransaction();
+        try {
+            int c = 0;
+            int resorder = 0;
+            for (String aa : IDOnumber) {
+                String[] tokens = aa.split(",");
+                resorder = Integer.valueOf(tokens[1]) - Integer.valueOf(save_ordernymber.get(c));
+                if (resorder == 0) {
+                    query.setParameter(2,1);
+                    deletee.add(Integer.valueOf(tokens[0]));
+                } else {
+                    query.setParameter(2,0);
+                }
+                query.setParameter(1,resorder) ;
+                query.setParameter(3,Integer.valueOf(tokens[0]));
+                c=c+1;
+                query.executeUpdate();
             }
-            query.setParameter(1,resorder) ;
-            query.setParameter(3,Integer.valueOf(tokens[0]));
-            c=c+1;
-
-            query.executeUpdate();
             tx.commit();
+        } catch (NumberFormatException e) {
+            tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
         }
         CA.Delete_zero(deletee);
-        session.close();
+
         //************************************************************//
 //        PreparedStatement ps = cnn.prepareStatement("UPDATE OrderTable SET order_number=?, food_status=? WHERE Order_ID=?;");
 //        int c = 0;
@@ -365,13 +371,29 @@ session.close();
 
     @Override
     public void Delete_zero(ArrayList<Integer> delete) throws SQLException {
-        Connection cnn = ds.getConnection();
-        PreparedStatement ps = cnn.prepareStatement("DELETE FROM OrderTable WHERE  Order_ID=?");
-        for (int i = 0; i < delete.size(); i++) {
-            ps.setInt(1, delete.get(i));
-            ps.addBatch();
+        //*****************************************//
+        Session session=HibernateUtil.getSessionFactory().openSession();
+        Transaction tx=session.beginTransaction();
+        Query query=session.createQuery("DELETE FROM OrderTableEntity  OTE WHERE  OTE.orderId=?1");
+        try {
+            for (int i = 0; i < delete.size(); i++) {
+                query.setParameter(1,delete.get(i));
+                query.executeUpdate();
+            }
+        } catch (Exception e) {
+            tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
         }
-        ps.executeBatch();
+        //******************************************//
+//        Connection cnn = ds.getConnection();
+//        PreparedStatement ps = cnn.prepareStatement("DELETE FROM OrderTable WHERE  Order_ID=?");
+//        for (int i = 0; i < delete.size(); i++) {
+//            ps.setInt(1, delete.get(i));
+//            ps.addBatch();
+//        }
+//        ps.executeBatch();
 
     }
 }
