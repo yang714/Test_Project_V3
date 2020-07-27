@@ -17,6 +17,7 @@
     <property name="connection.username">sa</property>
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+<property name="hibernate.current_session_context_class">thread</property>
 
     <mapping resource="CheckOutEntity.hbm.xml"/>
 <!--    <mapping class="Test_HIB.CheckOutEntity"/>-->

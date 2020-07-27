@@ -4,11 +4,8 @@ import Check_out_interface.Check_out_intf;
 import HibernateUtilpack.HibernateUtil;
 import Test_HIB.TableKindEntity;
 import Test_show_total.Show_T;
-import org.hibernate.Query;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
+import org.hibernate.*;
+import org.hibernate.SessionFactory;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -38,6 +35,7 @@ public class Check_out_Action implements Check_out_intf {
 //        int count=ss.Show_total(query);
 //        System.out.println("count" + count);
         //******************************************************//
+
         Session session= HibernateUtil.getSessionFactory().openSession();
 //        String SQL="from OrderTableEntity OTE join MemuEntity ME on OTE.memuId=ME.memuId and OTE.foodStatus=0 and OTE.orderTableId=?1 AND OTE.orderNumber!=0";
 //        session.createQuery(SQL);
@@ -191,10 +189,12 @@ session.close();
 //        System.out.println("<------------------>");
 //        System.out.println(save.get(0)+"----"+save.get(1));
 //*******************************************************************//
-        Session session=HibernateUtil.getSessionFactory().openSession();
+//        Session session=HibernateUtil.getSessionFactory().openSession();
+        Session session=HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tx= session.beginTransaction();
         Query query=session.createQuery("UPDATE OrderTableEntity OTE SET OTE.orderNumber=?1 ,OTE.foodStatus=?2 WHERE OTE.orderId=?3");
         ArrayList<Integer> deletee = new ArrayList();
-        Transaction tx= session.beginTransaction();
+
         try {
             int c = 0;
             int resorder = 0;
@@ -216,9 +216,10 @@ session.close();
         } catch (NumberFormatException e) {
             tx.rollback();
             e.printStackTrace();
-        } finally {
-            session.close();
         }
+//        finally {
+//            session.close();
+//        }
         CA.Delete_zero(deletee);
 
         //************************************************************//
@@ -372,7 +373,11 @@ session.close();
     @Override
     public void Delete_zero(ArrayList<Integer> delete) throws SQLException {
         //*****************************************//
+
         Session session=HibernateUtil.getSessionFactory().openSession();
+
+
+
         Transaction tx=session.beginTransaction();
         Query query=session.createQuery("DELETE FROM OrderTableEntity  OTE WHERE  OTE.orderId=?1");
         try {
