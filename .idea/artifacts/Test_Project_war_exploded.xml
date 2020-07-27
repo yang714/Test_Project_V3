@@ -17,7 +17,6 @@
           <element id="library" level="project" name="json-simple-1.1" />
           <element id="library" level="project" name="mssql-jdbc-8.2.2.jre13" />
           <element id="library" level="project" name="sqljdbc42" />
-          <element id="library" level="project" name="vlcj-4.4" />
           <element id="library" level="project" name="uk.co.caprica:vlcj:3.12.1" />
           <element id="library" level="project" name="javacv-platform-1.5.3" />
           <element id="library" level="project" name="javacv-platform-1.5" />
