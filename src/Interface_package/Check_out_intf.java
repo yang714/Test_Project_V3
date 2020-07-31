@@ -1,6 +1,6 @@
 package Interface_package;
 
-import Check_out_model.Checkout_model;
+import EX_Entity.Checkout_model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

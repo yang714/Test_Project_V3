@@ -1,6 +1,6 @@
 package Model_package;
 
-import Check_out_model.Checkout_model;
+import EX_Entity.Checkout_model;
 import Interface_package.Check_out_intf;
 import HibernateUtilpack.HibernateUtil;
 import Test_HIB.TableKindEntity;

@@ -1,6 +1,6 @@
 package Check_Out;
 
-import Check_out_model.Checkout_model;
+import EX_Entity.Checkout_model;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

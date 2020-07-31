@@ -37,10 +37,10 @@
     <bean id="HIBDiscount_model" class="Test_HIB.DiscountPEntity"></bean>
 
     <bean id="Report_A" class="Model_package.Report_A"></bean>
-    <bean id="Report_model" class="Report.Report_Model"></bean>
+    <bean id="Report_model" class="EX_Entity.Report_Model"></bean>
 
     <bean id="ReportN_A" class="Model_package.Report_NA"></bean>
-    <bean id="ReportN_model" class="Report_number.ReportN_model"></bean>
+    <bean id="ReportN_model" class="EX_Entity.ReportN_model"></bean>
 
     <bean id="VLC_EX" class="Model_package.VLC_EX"></bean>
 <!--    <bean id="ReportN_model" class="Report_number.ReportN_model"></bean>-->

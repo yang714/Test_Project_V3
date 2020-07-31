@@ -1,7 +1,7 @@
 package Check_Out;
 
 import Interface_package.Check_out_intf;
-import Check_out_model.Checkout_model;
+import EX_Entity.Checkout_model;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

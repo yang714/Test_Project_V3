@@ -1,4 +1,4 @@
-package Check_out_model;
+package EX_Entity;
 
 import java.math.BigDecimal;
 

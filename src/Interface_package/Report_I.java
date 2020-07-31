@@ -1,13 +1,10 @@
 package Interface_package;
 
-import Check_out_model.Checkout_model;
 import Report.Report_Model;
-import Test_HIB.CheckOutEntity;
 //import  Test_check.CheckOutEntity;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 
 public interface Report_I {
 //    Checkout_model Report(Date D1, Date D2) throws SQLException;
