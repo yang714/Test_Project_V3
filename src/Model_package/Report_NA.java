@@ -1,7 +1,8 @@
 package Model_package;
 
+import EX_Entity.ReportN_model;
 import Interface_package.ReportN_In;
-import Report_number.ReportN_model;
+
 import org.json.simple.JSONObject;
 
 import javax.annotation.Resource;

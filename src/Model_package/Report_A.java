@@ -1,10 +1,11 @@
 package Model_package;
 
+import EX_Entity.Report_Model;
 import HibernateUtilpack.HibernateUtil;
 import Interface_package.Report_I;
 //import  Test_check.CheckOutEntity;
 import Interface_package.Show_T;
-import Report.Report_Model;
+
 import org.hibernate.*;
 
 import java.sql.*;

@@ -1,8 +1,7 @@
 package Model_package;
 
 import HibernateUtilpack.HibernateUtil;
-import Model_package.Memu_Action;
-import Table_Model.Table_model;
+import EX_Entity.Table_model;
 import Test_HIB.MemuEntity;
 import Test_HIB.TableKindEntity;
 import Interface_package.Show_T;

@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:annotation-config/>
-    <context:component-scan base-package="user_Model" />
+<!--    <context:component-scan base-package="user_Model" />-->
     <bean id="DataS" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="url" value="jdbc:sqlserver://localhost:1433;databaseName=Test_DataBase"/>
         <property name="username" value="sa"></property>
@@ -27,7 +27,7 @@
     <bean id="Test_show" class="Model_package.Show_TL"></bean>
 
   <bean id="Table_A" class="Model_package.Table_Action"></bean>
-<bean id="Table_model" class="Table_Model.Table_model"></bean>
+<bean id="Table_model" class="EX_Entity.Table_model"></bean>
 
     <bean id="Check_A" class="Model_package.Check_out_Action"></bean>
     <bean id="Check_model" class="EX_Entity.Checkout_model"></bean>

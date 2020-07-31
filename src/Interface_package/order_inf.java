@@ -1,6 +1,6 @@
 package Interface_package;
 
-import Table_Model.Table_model;
+import EX_Entity.Table_model;
 import Test_HIB.MemuEntity;
 import Test_HIB.TableKindEntity;
 

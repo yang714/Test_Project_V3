@@ -3,7 +3,7 @@ package Control;
 import Model_package.VLC_EX;
 import Interface_package.Action;
 import Interface_package.Memu_ACT;
-import Table_Model.Table_model;
+import EX_Entity.Table_model;
 import Test_HIB.MealTypeEntity;
 import Test_HIB.MemuEntity;
 import Test_HIB.TableKindEntity;

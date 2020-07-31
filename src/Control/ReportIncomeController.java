@@ -1,7 +1,8 @@
 package Control;
 
+import EX_Entity.Report_Model;
 import Model_package.Report_A;
-import Report.Report_Model;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
