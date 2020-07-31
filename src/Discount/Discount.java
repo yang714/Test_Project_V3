@@ -1,8 +1,7 @@
 package Discount;
 
-import Table_Model.Table_model;
+import Interface_package.Discount_inf;
 import Test_HIB.DiscountPEntity;
-import order_interface.order_inf;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

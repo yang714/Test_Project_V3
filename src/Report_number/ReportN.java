@@ -1,7 +1,7 @@
 package Report_number;
 
-import Memu_interface.Memu_ACT;
-import Memu_model.Memu_M;
+import Interface_package.Memu_ACT;
+import Model_package.Report_NA;
 import Test_HIB.MealTypeEntity;
 import Test_HIB.MemuEntity;
 import org.springframework.context.ApplicationContext;

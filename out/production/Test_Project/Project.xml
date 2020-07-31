@@ -12,36 +12,36 @@
         <property name="password" value="DIO"></property>
     </bean>
 
-<bean id="Order_A" class="Order_Table_Model.Order_Table_Action"></bean>
+<bean id="Order_A" class="Model_package.Order_Table_Action"></bean>
 
-<bean id="Test" class="user_Model.user_Action" />
+<bean id="Test" class="Model_package.user_Action" />
 <!--<bean id="user_M" class="user_Model.user_M"></bean>-->
     <bean id="HIBuser_M" class="Test_HIB.User1Entity"></bean>
 
-<bean id="Memu_A" class="Memu_model.Memu_Action"></bean>
+<bean id="Memu_A" class="Model_package.Memu_Action"></bean>
 <!--    <bean id="Memu_M" class="Memu_model.Memu_M"></bean>-->
     <bean id="HIBMemu_M" class="Test_HIB.MemuEntity"></bean>
 
     <bean id="HIBMealType_M" class="Test_HIB.MealTypeEntity"></bean>
 
-    <bean id="Test_show" class="Test_show_total.Show_TL"></bean>
+    <bean id="Test_show" class="Model_package.Show_TL"></bean>
 
-  <bean id="Table_A" class="Table_Model.Table_Action"></bean>
+  <bean id="Table_A" class="Model_package.Table_Action"></bean>
 <bean id="Table_model" class="Table_Model.Table_model"></bean>
 
-    <bean id="Check_A" class="Check_out_model.Check_out_Action"></bean>
+    <bean id="Check_A" class="Model_package.Check_out_Action"></bean>
     <bean id="Check_model" class="Check_out_model.Checkout_model"></bean>
 
-    <bean id="Discount_A" class="Discount.Discount_A"></bean>
+    <bean id="Discount_A" class="Model_package.Discount_A"></bean>
 <!--    <bean id="Discount_model" class="Discount.Discount_M"></bean>-->
     <bean id="HIBDiscount_model" class="Test_HIB.DiscountPEntity"></bean>
 
-    <bean id="Report_A" class="Report.Report_A"></bean>
+    <bean id="Report_A" class="Model_package.Report_A"></bean>
     <bean id="Report_model" class="Report.Report_Model"></bean>
 
-    <bean id="ReportN_A" class="Report_number.Report_NA"></bean>
+    <bean id="ReportN_A" class="Model_package.Report_NA"></bean>
     <bean id="ReportN_model" class="Report_number.ReportN_model"></bean>
 
-    <bean id="VLC_EX" class="IPcamera.VLC_EX"></bean>
+    <bean id="VLC_EX" class="Model_package.VLC_EX"></bean>
 <!--    <bean id="ReportN_model" class="Report_number.ReportN_model"></bean>-->
 </beans>

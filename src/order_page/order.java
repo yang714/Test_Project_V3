@@ -1,10 +1,8 @@
 package order_page;
 
-import Interface.Action;
-import Memu_model.Memu_M;
 import Table_Model.Table_model;
 import Test_HIB.MemuEntity;
-import order_interface.order_inf;
+import Interface_package.order_inf;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

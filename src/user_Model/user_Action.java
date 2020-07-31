@@ -1,11 +1,10 @@
 package user_Model;
 
 import HibernateUtilpack.HibernateUtil;
-import Interface.Action;
+import Interface_package.Action;
 import Test_HIB.User1Entity;
-import Test_show_total.Show_T;
+import Interface_package.Show_T;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.annotation.Resource;
@@ -210,22 +209,37 @@ public class user_Action implements Action {
 
     }
 
-    public void chang_pw(user_M um){
-
+    public void chang_pw(User1Entity um){
+        Session session=HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tx= session.beginTransaction();
         try {
-            Connection cnn=ds.getConnection();
-            PreparedStatement ps=cnn.prepareStatement(
-                    "UPDATE User_1  set user_pw=?  where user_name=? " +
-                            "collate Chinese_Taiwan_CS_AI");
-            ps.setString(2,um.getId());
-            ps.setString(1,um.getPw());
-//            ps.setString(3,um.getOld_pw());
-            ps.executeUpdate();
+            Query query=session.createQuery("UPDATE User1Entity UE set UE.userPw=?1  where UE.userName=?2 ");
+            query.setParameter(2,um.getUserName());
+            query.setParameter(1,um.getUserPw());
+            query.executeUpdate();
+            tx.commit();
+        }
 
-
-        }catch (SQLException e) {
+        catch (Exception e) {
+            tx.rollback();
             e.printStackTrace();
         }
+
+        /****************************************************/
+
+//        try {
+//            Connection cnn=ds.getConnection();
+//            PreparedStatement ps=cnn.prepareStatement(
+//                    "UPDATE User_1  set user_pw=?  where user_name=? ");
+//            ps.setString(2,um.getUserName());
+//            ps.setString(1,um.getUserPw());
+////            ps.setString(3,um.getOld_pw());
+//            ps.executeUpdate();
+//
+//
+//        }catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 
 //    public int Show_total(String table) throws SQLException {

@@ -3,7 +3,7 @@ package Check_Out;
 
 import Table_Model.Table_model;
 import Test_HIB.TableKindEntity;
-import order_interface.order_inf;
+import Interface_package.order_inf;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

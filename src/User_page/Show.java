@@ -1,10 +1,9 @@
 package User_page;
 
-import Interface.Action;
+import Interface_package.Action;
 import Test_HIB.User1Entity;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import user_Model.user_M;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

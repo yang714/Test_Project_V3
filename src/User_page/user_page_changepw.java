@@ -1,9 +1,9 @@
 package User_page;
 
-import Interface.Action;
+import Interface_package.Action;
+import Test_HIB.User1Entity;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import user_Model.user_M;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,10 +25,10 @@ public class user_page_changepw extends HttpServlet {
                String xml = "Project.xml";
                ApplicationContext ap = new ClassPathXmlApplicationContext(xml);
                Action AC = (Action) ap.getBean("Test");//<bean id="Test" class="user_Model.user_Action"></bean>
-               user_M um = (user_M) ap.getBean("user_M");//<bean id="user_M" class="user_Model.user_M"></bean>
+               User1Entity um = (User1Entity) ap.getBean("HIBuser_M");//<bean id="user_M" class="user_Model.user_M"></bean>
                HttpSession sessionsa = request.getSession(false);
-               um.setId((String) sessionsa.getAttribute("login_um_id"));
-               um.setPw(new_user_pw);
+               um.setId((Integer) sessionsa.getAttribute("login_um_id"));
+               um.setUserPw(new_user_pw);
                AC.chang_pw(um);
                request.setAttribute("message", "密碼改成功");
                RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");

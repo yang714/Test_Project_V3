@@ -1,5 +1,6 @@
 package IPcamera;
 
+import Model_package.VLC_EX;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

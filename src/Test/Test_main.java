@@ -1,10 +1,9 @@
 package Test;
 
-import Interface.Action;
-import Table_Model.Table_Action;
+import Interface_package.Action;
+import Model_package.Table_Action;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import user_Model.user_M;
 
 import java.sql.SQLException;
 

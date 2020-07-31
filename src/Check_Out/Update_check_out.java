@@ -1,9 +1,7 @@
 package Check_Out;
 
-import Check_out_interface.Check_out_intf;
-import Check_out_model.Check_out_Action;
+import Interface_package.Check_out_intf;
 import Check_out_model.Checkout_model;
-import Test_show_total.Show_T;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

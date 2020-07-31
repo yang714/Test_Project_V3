@@ -1,19 +1,10 @@
 package Report;
 
-import Memu_interface.Memu_ACT;
-import Memu_model.Memu_M;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
 
 //@WebServlet("/RP")//testing in-->INselect_dateortotal
 public class report_option extends HttpServlet {

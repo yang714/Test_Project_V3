@@ -1,13 +1,10 @@
 package Memu;
 
-import Memu_interface.Memu_ACT;
-import Memu_interface.set_get_memu;
-import Memu_model.Memu_M;
+import Interface_package.Memu_ACT;
 import Test_HIB.MemuEntity;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

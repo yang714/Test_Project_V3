@@ -10,8 +10,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import Memu_model.Memu_M;
-import Order_Table.Order_Table_Interface;
+import Interface_package.Order_Table_Interface;
 import Test_HIB.MemuEntity;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

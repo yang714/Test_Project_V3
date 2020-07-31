@@ -1,7 +1,6 @@
 package Report_number;
 
-import Memu_interface.Memu_ACT;
-import Memu_model.Memu_M;
+import Model_package.Report_NA;
 import org.json.simple.JSONObject;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 @WebServlet("/RPCBD")
 public class ReportN_cb_date extends HttpServlet {

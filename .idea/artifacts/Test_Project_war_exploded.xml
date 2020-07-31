@@ -8,7 +8,6 @@
           <element id="library" level="project" name="hibernate-release-5.4.181" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Spring-5.2.3.RELEASE" />
           <element id="library" level="project" name="apache-tomcat-9.0" />
           <element id="library" level="project" name="javax.servlet:jstl:1.2" />
           <element id="library" level="project" name="jstl-1.2" />
@@ -28,6 +27,8 @@
           <element id="library" level="project" name="Simple Logging Facade for Java:1.7.301" />
           <element id="library" level="project" name="dom4j-2.0.3" />
           <element id="library" level="project" name="c3p0:c3p0:0.9.1.2" />
+          <element id="library" level="project" name="Spring MVC-4.3.18.RELEASE" />
+          <element id="library" level="project" name="Spring-4.3.18.RELEASE" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="Test_Project/web/Web" />

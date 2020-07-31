@@ -1,7 +1,7 @@
 package Memu_model;
 
 
-import Memu_interface.set_get_memu;
+import Interface_package.set_get_memu;
 
 public class Memu_M  implements set_get_memu {
 
